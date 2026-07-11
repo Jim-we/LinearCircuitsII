@@ -1,0 +1,234 @@
+\documentclass[12pt]{article}
+
+% ---------- Packages ----------
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{siunitx}
+\usepackage{enumitem}
+\usepackage{hyperref}
+
+% ---------- Header/Footer ----------
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Project: 1 Thevenin's Theorem}
+\fancyhead[R]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+\setlength{\parskip}{0.6em}
+\setlength{\parindent}{0pt}
+
+\begin{document}
+
+% ======================================================
+% Title Page
+% ======================================================
+\begin{titlepage}
+\thispagestyle{fancy}
+\begin{center}
+    \vspace*{2cm}
+    {\LARGE Linear Circuits 2 \par}
+    \vspace{1cm}
+    {\Large Thevenin's Theorem Lab Report \par}
+
+    \vspace{6cm}
+    {\large Group Members: \par}
+    \vspace{1cm}
+    {\large Name: Juvon Mondesir \par}
+    \vspace{1cm}
+    {\large Name: Kenny Gallmon \par}
+\end{center}
+\end{titlepage}
+
+% ======================================================
+% Objectives
+% ======================================================
+\section*{Objectives:}
+
+The objective of the project was to apply our knowledge of Thevenin and Norton
+equivalent circuit that was learnt in Linear Circuits 1, and verify those
+results in real world setting, via both simulation of the circuit in LTSpice
+as well as physically proving the circuits correct on a breadboard with the
+respective components.
+
+The circuit that was to be verified is shown below:
+
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{images/circuit_photo.jpg}
+\end{center}
+
+% ======================================================
+% Equipment
+% ======================================================
+\section*{Equipment:}
+
+\begin{itemize}[noitemsep]
+    \item Digital Multimeter (DMM)
+    \item Rohde \& Schwarz Power Supply Series
+    \item 1u Capacitor
+    \item One 1k Resistor
+    \item Two 2k Resistors
+    \item One 3k Resistor
+\end{itemize}
+
+% ======================================================
+% Hand Calculations
+% ======================================================
+\section*{Hand Calculations:}
+
+To implement this circuit, we first use LTSpice to create it exactly as was
+shown via the picture above. Once it was created, it should appear as the
+following:
+
+\begin{center}
+    \includegraphics[width=0.75\textwidth]{images/fig1_original_circuit.png}
+    \par\textit{Figure 1: Original Circuit}
+\end{center}
+
+\subsection*{When the circuit is shorted across Node a and b:}
+
+\begin{center}
+    \includegraphics[width=0.75\textwidth]{images/fig2_shorted_circuit.png}
+    \par\textit{Figure 2: Shorted Circuit}
+\end{center}
+
+In the simulation, we found the Thevenin Voltage which would be the
+difference in voltage between Node A \& B with the open circuit. As well as
+the Norton Current by measuring the current running through the shorted wire
+through Nodes A \& B. After this, we then performed a hand analysis to
+confirm values, of which the steps are shown below:
+
+\begin{center}
+    \includegraphics[width=0.55\textwidth]{images/fig3_vth_sim.png}
+    \par\textit{Figure 3: Voltage Thevenin from Simulation}
+\end{center}
+
+\begin{enumerate}[label=\arabic*)]
+    \item First, remember Ohm's law we know $V = IR$, and $R = V/I$. So, to
+    get an idea of each value, we first use the original circuit simulation
+    to measure $V_{th}$. Resulting in 2.2V (shown above).
+    \item After this, the next value we can obtain is $R_{th}$, which we can
+    do multiple ways. The way we chose to do this is by shorting all the
+    independent sources and replacing the open circuit between Node A \& B
+    with a test voltage of 1V.
+    \item Next, using the simulation or KCL, we measure the current going
+    across that voltage source which is equivalent to \SI{238.09}{\micro\ampere}.
+    \item Once this is done, simply use Ohm's law to get $R_{th}$ by
+    calculating $1\text{V} / \SI{238.09}{\micro\ampere}$. The result being
+    4200.09 $\Omega$.
+    \item This gives us all the components we need to create the Thevenin
+    Equivalent Model, but to convert to Norton it's fairly simple.
+    \item To get the current needed, divide $V_{th}$ by $R_{th}$ which
+    yields the result $5.24 \times 10^{-4}\,\text{A}$ and put a 4200 $\Omega$
+    resistor in parallel.
+    \item You also get the same result by shorting the wire between A \& B
+    and just measuring/solving the current.
+\end{enumerate}
+
+\begin{center}
+    \includegraphics[width=0.75\textwidth]{images/fig4_hand_calcs.jpg}
+    \par\textit{Figure 4: Hand Calculations}
+\end{center}
+
+These results are also shown in the Simulation Results section as well.
+
+After this, we then put the circuit onto the breadboard as shown below and
+verify it with a Digital Multimeter.
+
+% ======================================================
+% Simulation
+% ======================================================
+\section*{Simulation:}
+
+For the simulation, we decided to build multiple different circuits to
+assist us in finding each of our values.
+
+\begin{center}
+    \includegraphics[width=0.85\textwidth]{images/fig5_simulated_circuits.png}
+    \par\textit{Figure 5: Simulated Circuits}
+\end{center}
+
+Continuing to our simulation results, with the following image shown below
+for the original circuit:
+
+\begin{center}
+    \includegraphics[width=0.7\textwidth]{images/fig6_original_op_point.png}
+    \par\textit{Figure 6: Original Circuit Simulation Results}
+\end{center}
+
+\textbf{Shown above, are the results for our first circuit. The important
+value to gather from this is the voltage V(a), which is 2.2V. (Vth)}
+
+\begin{center}
+    \includegraphics[width=0.45\textwidth]{images/fig7_shorted_op_point.png}
+    \par\textit{Figure 7: Shorted Circuit Simulation Results}
+\end{center}
+
+Here in this image, are the values obtained from the short circuit version.
+If you wanted to find $I_{sc}$, it's the equivalent of the current across R3,
+approximately $5 \times 10^{-4}$ A. Plugging both the $V_{th}$ and $I_{sc}$
+into Ohm's law will give you $R_{th}$.
+
+% ======================================================
+% Experiment
+% ======================================================
+\section*{Experiment:}
+
+For the experimental results, with the breadboard shown above we measure the
+voltage between nodes A and B to get the following voltage:
+
+\begin{center}
+    \includegraphics[width=0.4\textwidth]{images/fig8_thevenin_voltage.png}
+    \par\textit{Figure 8: Thevenin Voltage Measurement}
+\end{center}
+
+For the equivalent resistance, we turn off all the independent sources and
+use the probes of the Digital Multimeter to get the following equivalent
+resistance between nodes A and B:
+
+\begin{center}
+    \includegraphics[width=0.4\textwidth]{images/fig9_thevenin_resistance.png}
+    \par\textit{Figure 9: Thevenin Resistance Measurement}
+\end{center}
+
+For the current, we broke the circuit to measure the current traveling
+across the nodes A and B to get the following value:
+
+\begin{center}
+    \includegraphics[width=0.4\textwidth]{images/fig10_norton_current.png}
+    \par\textit{Figure 10: Norton Equivalent Current (Isc)}
+\end{center}
+
+% ======================================================
+% Results
+% ======================================================
+\section*{Results:}
+
+Both the experimental and simulation results are almost identical to each
+other, with the only discrepancy being our Thevenin resistance value. After
+further inspection our DMM picture has the result of 4.16M $\Omega$ rather
+than 4.16k $\Omega$. This could possibly be the result of a broken circuit
+accounting for higher resistance than normal given that our calculations and
+simulations both prove that 4.16k $\Omega$ is the correct value. Overall,
+the results do align with each other, and a simple mistake is most likely
+what caused the difference in resistance values given the digits are the
+same, just on a larger scale.
+
+% ======================================================
+% Conclusion
+% ======================================================
+\section*{Conclusion:}
+
+This project has been successful in validating the principles of Thevenin
+and Norton's theorems via comparing the hands-on calculations, virtual
+simulations, and real-world experimentation. The initial hand analysis
+determined that the Thevenin voltage to be 2.2V and the Norton current to be
+0.5mA, values whose validation was strengthened by the LTSpice simulation
+results of 2.2V and 0.52mA, respectively. In the experimental phase, the
+physical circuit yielded a measured voltage of 2.195V and a Norton current
+of 0.512mA. Overall, the close accuracy across all three validations
+confirms the application of circuit theory, making this project a success.
+
+\end{document}
