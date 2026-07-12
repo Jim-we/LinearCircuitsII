@@ -1,0 +1,308 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{siunitx}
+\usepackage{caption}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage{hyperref}
+
+\pagestyle{fancy}
+\setlength{\headheight}{14pt}
+\fancyhf{}
+\lhead{Project: \#2 Circuit Design \#1}
+\rhead{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\title{\vspace{-2cm}Linear Circuits 2 \\ Circuit Design \#2 Lab Report}
+\author{Group Members: \\ Name: Juvon Mondesir \\ Name: Kenny Gallmon}
+\date{}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{fancy}
+
+\section*{Objective}
+
+The goal of this project is to use our knowledge of the breadboard and circuit
+analysis to produce a physical interpretation of the example circuits that
+follow certain constraints. For each part there were different instructions.
+
+\subsection*{Part A}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{figures/fig01_part_a.png}
+    \caption{Circuit Design Part A}
+    \label{fig:part_a}
+\end{figure}
+
+For this part, in circuit A, the constraint is $V_{OA} = K_a \cdot V_{IA}$, and
+circuit B's was $V_{OB} = K_b \cdot V_{IB}$. $K_a = 0.75$ and $K_b = 0.6$.
+While doing this we needed resistors between 1\,k$\Omega$ to 10\,k$\Omega$ and
+had to use the fewest components possible.
+
+\subsection*{Part B}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{figures/fig02_part_b.png}
+    \caption{Circuit Design Part B}
+    \label{fig:part_b}
+\end{figure}
+
+For the second part of this project, we are now asked to cascade circuit A and
+B from the previous portion. Using this, we figure out whether
+$V_{OB} = K_a \cdot K_b \cdot V_{IA}$ and explain why it does not. Following
+this, we need to redesign one of the two circuits to not only satisfy that
+requirement but also the constraints from before, $V_{OA} = K_a \cdot V_{IA}$
+and $V_{OB} = K_b \cdot V_{IB}$. Also keeping in mind to use the fewest
+components possible and only resistances between 100\,$\Omega$ and
+400\,k$\Omega$.
+
+\subsection*{Part C}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{figures/fig03_part_c.png}
+    \caption{Circuit Design Part C}
+    \label{fig:part_c}
+\end{figure}
+
+Lastly, for Part C you will use Circuit A and B from Part A to design a
+circuit that will exhibit the same behavior as Figure~\ref{fig:part_c}. Using
+additional circuits if needed, an op-amp and resistors from 1\,k$\Omega$ to
+10\,k$\Omega$. The following constraints must be satisfied: $V_{OA} = K_a
+\cdot V_{IA}$, $V_{OB} = K_b \cdot V_{IB}$, and $V_O = K_a \cdot K_b \cdot K_c
+\cdot V_S$. $K_c = 8$.
+
+\section*{Equipment}
+
+\begin{itemize}
+    \item Lab Equipment
+    \item LTspice
+    \item Hantek 3-in-1 Digital Equipment
+    \item Powered Breadboard
+    \item 1\,k, 3\,k, 4\,k, 4.3\,k, 6\,k $\Omega$ resistors
+    \item Operational Amplifier
+\end{itemize}
+
+\section*{Simulations / Hand Calculations}
+
+\subsection*{Part A}
+
+For Part A, we needed to design a circuit that could satisfy $V_{OA} = K_a
+\cdot V_{IA}$, and another circuit that satisfies $V_{OB} = K_b \cdot V_{IB}$,
+with values $K_a = 0.75$ and $K_b = 0.6$.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{figures/fig04a_circuit_a_schem.png}
+    \caption{Circuit (a) in Part A}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{figures/fig04b_voa_opdata.png}
+    \caption{$V_{OA}(0.75\text{V}) = V_{in}(1\text{V}) \cdot K_a(0.75)$}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{figures/fig04c_waveform_a.png}
+    \caption{Waveform for square-wave voltage}
+\end{figure}
+
+For Circuit A, we determined the resistor values 1\,k$\Omega$ and 3\,k$\Omega$
+would satisfy the requirements.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{figures/fig05a_circuit_b_schem.png}
+    \caption{Circuit (b) in Part A}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{figures/fig05b_vob_opdata.png}
+    \caption{$V_{OB}(0.6\text{V}) = K_b(0.6) \cdot V_{in}(1\text{V})$}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{figures/fig05c_waveform_b.png}
+    \caption{Waveform for square-wave voltage}
+\end{figure}
+
+For Circuit B, we determined that 4\,k$\Omega$ and 6\,k$\Omega$ were good
+resistor values to yield the proper results.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{figures/fig06_handcalc_parta.png}
+    \caption{Hand calculations for both circuits in Part A}
+\end{figure}
+
+\subsection*{Part B}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/fig07a_cascade_schem.png}
+    \caption{Cascaded original circuit outputs 418\,mV, so $V_{OB} = K_a
+    \cdot K_b \cdot V_{IA}$ does not apply}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{figures/fig07b_voutb_opdata.png}
+    \caption{$V_{OUT(B)} = 418.6$\,mV}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{figures/fig07c_remodeled_schem.png}
+    \caption{Remodeled version of Circuit B (3\,k$\Omega$ changed to
+    4.3\,k$\Omega$)}
+\end{figure}
+
+After concluding the original circuit resulted in a voltage output that
+didn't align with the equation, we modified circuit (a) and changed the
+3\,k$\Omega$ resistor to a 4.3\,k$\Omega$ one. As shown below, it reflects
+450\,mV, which is correct for the given constraint.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{figures/fig07d_vob450_opdata.png}
+    \caption{$V_{OB}(450\text{mV}) = V_{IA}(1\text{V}) \cdot K_a(0.75) \cdot
+    K_b(0.6)$}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{figures/fig07e_waveform_450.png}
+    \caption{Voltage waveform for square wave}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{figures/fig08_handcalc_partb.png}
+    \caption{Hand calculations for Part B}
+\end{figure}
+
+Since $V_{OB} = V_{OA}$, is $V_{OB} = K_a \cdot K_b \cdot V_{IA}$? Checking:
+$418\text{mV} \overset{?}{=} (0.75)(0.6)(1\text{V}) = 450$\,mV. No, because the
+new Circuit B acts as a load, so the overall resistance in the circuit
+increases. Redesigning to fit the constraints (changing the 3\,k$\Omega$
+resistor to 4.3\,k$\Omega$) confirms $V_{OA} = 0.75$\,V (750\,mV) and $V_{OB}
+= 0.45$\,V (450\,mV), matching $V_{OB} = K_a \cdot K_b \cdot V_{IA}$.
+
+\subsection*{Part C}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{figures/fig09_partc_schem_opdata.png}
+    \caption{Part C op-amp circuit with simulated operating-point data}
+\end{figure}
+
+For Part C of the experiment, we place an op-amp between Circuits A and B. We
+then design the op-amp to have a gain of 8. For this, we use a noninverting
+configuration. To find the values for the feedback resistor and the resistor
+connected to ground, we use the relationship $V_{out} = V_{in}(1 + R_1/R_2)$.
+We found that $R_2$ needs to be 7 times greater than $R_1$. To do this, we
+utilize the values 7\,k$\Omega$ and 1\,k$\Omega$ as a result.
+
+\section*{Experiment}
+
+\subsection*{Part A}
+
+Measurement of $V_{OA}$ of circuit A $= 0.75698$\,V:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{figures/fig10_breadboard_circuita.png}
+    \caption{Breadboard implementation of Circuit A}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/fig11_circuita_opdata.png}
+    \caption{Circuit A schematic with simulated operating-point data}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{figures/fig12_scope_voa.png}
+    \caption{Measured $V_{OA} = 0.75698$\,V}
+\end{figure}
+
+Measurement of $V_{OB}$ of circuit B $= 0.60021$\,V:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{figures/fig13_breadboard_circuitb.png}
+    \caption{Breadboard implementation of Circuit B}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/fig14_circuitb_opdata.png}
+    \caption{Circuit B schematic with simulated operating-point data}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{figures/fig15_scope_vob.png}
+    \caption{Measured $V_{OB} = 0.60021$\,V}
+\end{figure}
+
+The node of $V_{OUT(B)}$ of the noninverting op-amp:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{figures/fig16_breadboard_partc.png}
+    \caption{Breadboard implementation of the full Part C cascaded circuit
+    with op-amp}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{figures/fig17_partc_schem_opdata_repeat.png}
+    \caption{Part C op-amp circuit with simulated operating-point data
+    (repeated for reference)}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{figures/fig17_scope_gain8.png}
+    \caption{Measured output of the gain-of-8 op-amp stage, $3.65845$\,V}
+\end{figure}
+
+\section*{Results}
+
+Across the different parts of the experiment, we observe that the measured
+results closely match the simulated values, confirming the designs to be
+true. In Part A, the measured output of 0.757\,V is closely accurate with the
+simulated value of 0.75\,V. In Part B, the measured output of 0.60\,V is
+accurate with the simulation result. Finally, in Part C, the op-amp circuit
+produced an output of 3.658\,V, which is in range of the simulated output of
+3.6\,V. Overall, the experimental and simulated results verify the
+theoretical designs with negligible errors.
+
+\section*{Conclusion}
+
+This experiment has shown how unrelated circuit stages can be combined to
+obtain a certain overall gain. In Part A and Part B, we designed voltage
+divider circuits with gains of $K_a = 0.75$ and $K_b = 0.6$. We then cascaded
+the circuits to observe how the individual stages would affect the total
+gain. Noticing the differences in the gain at certain points, we determined
+that we must do a resistor redesign to regain the gains we originally had. In
+Part C, we designed an op-amp circuit with a gain factor of $K_c = 8$, which
+restores ideal behavior while allowing for additional amplification of
+voltage. Overall, the experiment reinforced how theoretical gain
+relationships combined with careful cascaded redesigns could be achieved
+accurately under real-world conditions.
+
+\end{document}
