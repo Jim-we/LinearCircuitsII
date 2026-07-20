@@ -1,0 +1,115 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{siunitx}
+\usepackage{caption}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage{hyperref}
+
+\pagestyle{fancy}
+\setlength{\headheight}{14pt}
+\fancyhf{}
+\lhead{Project 3: AC Load Measurement}
+\rhead{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\title{\vspace{-2cm}Linear Circuits 2 \\ AC Load Measurement Lab Report}
+\author{Group Members: \\ Juvon Mondesir \\ Kenny Gallmon}
+\date{}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{fancy}
+
+\section*{Objectives}
+
+For this project, the objective was to determine the impedance and power
+factor of a hidden AC load at a specific frequency of the V peak to peak, as
+the current of the load using a resistor due to the accessibility of the
+black box being only wires. Then, we were tasked to find the phase angle and
+determine if it was inductive or capacitive.
+
+We were given the following circuit (abstractly):
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{figures/fig01_zl_circuit.png}
+    \caption{Abstract representation of the hidden AC load $Z_L$. Node A is
+    connected to a red wire; Node B is connected to a black wire.}
+    \label{fig:zl_circuit}
+\end{figure}
+
+\section*{Experimental Plan}
+
+To start off, we found the current of the whole series circuit. This
+involved putting our multimeter in series with node B and ground while
+setting the multimeter to current mode. We pursued finding the voltages of
+each element and to do that we utilized a test resistor. After this, we then
+proceeded to use Ohm's Law to find the impedance of both the resistor and
+the black box. We then need to find the phase difference to find out if the
+box is inductive or capacitive in nature, which will tell us what components
+are inside the box. To find the phase angle, we used the oscilloscope to
+find it with the reference being the original input AC voltage.
+
+\section*{Experimental Results}
+
+Now for the experimental results, we measured the voltage across the shunt
+resistor:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\textwidth]{figures/fig02_scope_voltage.png}
+    \caption{Measured voltage across the shunt resistor, $16.454$\,mV}
+\end{figure}
+
+For the current, we measured the current leaving the black box and entering
+the same shunt resistor:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\textwidth]{figures/fig03_scope_current.png}
+    \caption{Measured current leaving the black box, $0.0826$\,mA}
+\end{figure}
+
+Using these measurements, some hand calculations were made:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{figures/fig04_handcalc.png}
+    \caption{Hand calculations for impedance, phase difference, and power
+    factor}
+\end{figure}
+
+\[
+Z = 6.1\,\text{k}\Omega + j0
+\]
+
+\section*{Results Comparison}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{figures/fig05_scope_waveform.png}
+    \caption{Voltage (C2) and current (C3) waveform}
+\end{figure}
+
+For this section, after finding out that our phase angle is zero, we
+determined that our black box is not capacitive or inductive in nature.
+Thus, this means our mystery circuit is purely resistive, aka an RR circuit.
+The power factor is 1, which means physically, the voltage and current are
+perfectly in phase, which can be seen in the image above.
+
+\section*{Conclusion}
+
+In this experiment, the objective was to identify the characteristics of the
+unknown AC load by determining its impedance, power factor, and its nature.
+This is done by measuring the voltage and current across the concealed
+circuit and a test resistor, allowing us to analyze the circuit's behavior.
+Our measurements revealed an impedance of $6.1$\,k$\Omega$ and a phase angle
+of zero, which led to the conclusion of the concealed circuit being purely
+resistive.
+
+\end{document}
