@@ -1,0 +1,240 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{siunitx}
+\usepackage{caption}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{enumitem}
+
+\pagestyle{fancy}
+\setlength{\headheight}{14pt}
+\fancyhf{}
+\lhead{Project \#5: Circuit Design \#2}
+\rhead{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\title{\vspace{-2cm}Linear Circuits 2 \\ Project \#5 Circuit Design \#2 Lab Report}
+\author{Group Members: \\ Kenneth Gallmon \\ Juvon Mondesir}
+\date{}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{fancy}
+
+\section*{Objective}
+
+The goal of the project is to design a circuit that meets certain design
+requirements.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/fig01_circuit_model.png}
+    \caption{Circuit model: function generator ($V_{IS}$, $R_S$) driving the
+    circuit design under a variable load $R_L$}
+    \label{fig:circuit_model}
+\end{figure}
+
+Basing our design off this circuit model, we are tasked to meet these
+requirements:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{figures/fig02_design_specs.png}
+    \caption{Design specifications: resistance range, frequency-dependent
+    gain requirements, and notations}
+\end{figure}
+
+So not only must we meet all these specifications, but the design must also
+work for the entire range of load resistances.
+
+\section*{Equipment}
+
+\begin{itemize}[nosep]
+    \item Lab Equipment
+    \item Circuit Simulator
+    \item Hantek 3-in-1 Digital Equipment
+    \item Powered Breadboard
+\end{itemize}
+
+\section*{Simulations / Hand Calculations}
+
+For all the simulations 10\,V is used in a sinusoidal voltage source over
+varying frequencies. In addition to these, 50\,$\Omega$ is added in series
+to replicate the function generator.
+
+\subsection*{Initial Filter Behavior Simulation}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/fig03_initial_sim_rl1k.png}
+    \caption{Frequency response and schematic with $R_2 = 1$\,k$\Omega$}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\textwidth]{figures/fig04_initial_sim_rl30k.png}
+    \caption{Frequency response and schematic with $R_2 = 30$\,k$\Omega$}
+\end{figure}
+
+\textbf{Simulation 1)} $R_L = 30$\,k$\Omega$, $f = 1$\,kHz, $C = 0.047\,\mu$F
+
+Using these values in the circuit equates to $|V_O/V_{IS}|$ being $0.275$.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{figures/fig05_sim1_schematic.png}
+    \caption{Simulation 1 schematic}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{figures/fig06_sim1_waveform.png}
+    \caption{Simulation 1 output waveform}
+\end{figure}
+
+Above, is the simulated circuit and results of the gain, which align with
+the specification of $|V_O| \leq 0.7|V_{IS}|$.
+
+\textbf{Simulation 2)} $R_L = 1$\,k$\Omega$, $f = 10$\,kHz, $C = 0.047\,\mu$F
+
+With these values the gain $|V_O/V_{IS}|$ of the circuit equates to $0.774$.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{figures/fig07_sim2_schematic.png}
+    \caption{Simulation 2 schematic}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{figures/fig08_sim2_waveform.png}
+    \caption{Simulation 2 output waveform over a 10\,kHz span}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/fig09_sim2_bode.png}
+    \caption{Simulation 2 frequency response}
+\end{figure}
+
+Once again, the pictures above demonstrate the simulated circuit and the
+waveform of $V_O$ over the span 10\,kHz. The gain of this circuit
+$|V_O/V_{IS}|$ equates to $0.774$, which aligns with the specification of
+$|V_O| \geq 0.7|V_{IS}|$.
+
+\textbf{Simulation 3)} $R_L = 1$\,k$\Omega$, $f = 20$\,kHz, $C = 0.047\,\mu$F
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{figures/fig10_sim3_schematic.png}
+    \caption{Simulation 3 schematic}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{figures/fig11_sim3_waveform.png}
+    \caption{Simulation 3 output waveform over a 20\,kHz span}
+\end{figure}
+
+This is the 3rd simulated circuit and its waveform over the span of
+20\,kHz. The gain of this circuit equates to $0.875$, which follows the
+specification of this portion being $|V_O| \geq 0.85|V_{IS}|$.
+
+\subsection*{Additional Hand Calculations}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{figures/fig12_handcalc1.png}
+    \caption{Hand calculations: equivalent resistance $R_{eq} = R \parallel
+    R_L$ for the minimum and maximum load resistance}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.45\textwidth]{figures/fig13_handcalc2.png}
+    \caption{Hand calculations verifying the gain requirements for
+    $1\,\text{Hz} \leq f \leq 1\,\text{kHz}$ and $10\,\text{kHz} \leq f 
+    20\,\text{kHz}$}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{figures/fig14_handcalc3.png}
+    \caption{Hand calculations verifying the gain requirement for $f >
+    20$\,kHz}
+\end{figure}
+
+\section*{Experiment}
+
+To design the circuit, we knew it had to be a high pass filter, so we knew
+to use a capacitor and resistor. As far as the values, after calculation
+provided above, we concluded that a capacitor value of $0.047\,\mu$F and
+internal resistor of 1\,k$\Omega$ would be sufficient to satisfy all
+requirements, with minimal difference on varying load resistances as well.
+
+\subsection*{Bode Plot Behavior}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{figures/fig15_bode_plot_behavior.png}
+    \caption{Measured Bode plot behavior of the filter}
+\end{figure}
+
+\subsection*{Scenario 1 Waveform: $R_L = 30$\,k$\Omega$, $f = 1$\,kHz}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{figures/fig16_scenario1_waveform.png}
+    \caption{Scenario 1 measured waveform (C1: input, C2: output)}
+\end{figure}
+
+$|V_O/V_{IS}|$ with scenario 1's values were $0.275$. In the picture above
+from the oscilloscope, C1 is the voltage input signal and C2 is the voltage
+output signal. So, comparing both signals it accurately reflects the
+initial requirement of $|V_O| \leq 0.7|V_{IS}|$.
+
+\subsection*{Scenario 2 Waveform: $R_L = 1$\,k$\Omega$, $f = 10$\,kHz}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{figures/fig17_scenario2_waveform.png}
+    \caption{Scenario 2 measured waveform (C1: input, C2: output)}
+\end{figure}
+
+In scenario 2, $|V_O/V_{IS}| = 0.774$. This image from the oscilloscope has
+the same concept as the previous one, with Channel 1 being input and
+Channel 2 being output. After comparison and viewing the $V_{pp}$ values you
+can see these waveforms satisfy the requirement of $|V_O| \geq 0.7|V_{IS}|$.
+
+\subsection*{Scenario 3 Waveform: $R_L = 1$\,k$\Omega$, $f = 20$\,kHz}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{figures/fig18_scenario3_waveform.png}
+    \caption{Scenario 3 measured waveform (C1: input, C2: output)}
+\end{figure}
+
+Lastly, in scenario 3, the $|V_O/V_{IS}| = 0.875$. From observing the
+oscilloscope, it shows the correct ratio of $|V_O| \geq 0.85|V_{IS}|$.
+
+\section*{Results}
+
+Our output voltage matched all the constraints of the project, having
+values close to $0.875\,V_{IS}$ for higher frequencies and close to
+$0.275\,V_{IS}$ for lower frequencies. All in all, our filter circuit
+performed well, and the results are as expected.
+
+\section*{Conclusion}
+
+Our circuit was a success, and we were able to use the properties of
+capacitors under high and low frequencies to make a filter under specific
+design constraints. We also tested the impact of the loading effect of the
+resistor in tandem with the internal resistance of the function generator
+and oscilloscope on filter response.
+
+\end{document}
