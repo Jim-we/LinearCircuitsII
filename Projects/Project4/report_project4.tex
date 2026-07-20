@@ -1,0 +1,174 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{siunitx}
+\usepackage{caption}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{enumitem}
+
+\pagestyle{fancy}
+\setlength{\headheight}{14pt}
+\fancyhf{}
+\lhead{Project \#4: Circuit Element Identification}
+\rhead{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\title{\vspace{-2cm}Linear Circuits 2 \\ Circuit Element Identification Lab Report}
+\author{Group Members: \\ Juvon Mondesir \\ Kenny Gallmon}
+\date{}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{fancy}
+
+\section*{Objectives}
+
+We are given a concealed circuit with the following specifications:
+
+\begin{itemize}[nosep]
+    \item The concealed circuit contains two circuit elements only:
+    Element X and Element Y
+    \item The elements are connected in series
+    \item Both elements X and Y can be a resistor, inductor, or capacitor
+    \item The concealed circuit must contain at least one resistor
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{figures/fig01_concealed_circuit.png}
+    \caption{Concealed circuit under test. Node A is connected to a red
+    wire, Node B to a black wire, and Node C to a green wire.}
+    \label{fig:concealed_circuit}
+\end{figure}
+
+We are given four tasks:
+
+\begin{itemize}[nosep]
+    \item Identify the type of element that is connected between node A
+    and node C.
+    \item Determine the value for element X. The predicted value must fall
+    within $\pm 20\%$ of the actual component value.
+    \item Identify the type of element that is connected between node B
+    and node C.
+    \item Determine the value for element Y. The predicted value must fall
+    within $\pm 20\%$ of the actual component value.
+\end{itemize}
+
+\section*{Dissection of Experimental Plan: Part One}
+
+To begin with, the first part of our plan was to determine the combination
+of elements X and Y. We concluded that there were only three combinations,
+which include RR, RL, and RC. The first test that we performed was to apply
+a square wave input to observe the phase difference of the waveforms across
+both elements X and Y.
+
+\section*{Experimental Results: Part One}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\textwidth]{figures/fig02_funcgen_settings.png}
+    \caption{Function generator settings: $1$\,kHz, $10$\,V$_{pp}$ square
+    wave}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{figures/fig03_scope_waveform_p1.png}
+    \caption{Oscilloscope output of the waveforms across component X and Y}
+\end{figure}
+
+Using a 1\,kHz, 10\,V$_{pp}$ square wave, we observe the oscilloscope output
+of component X and Y. Utilizing the oscilloscope, we find that there is no
+phase difference. As a result, we determine that the concealed circuit has
+two resistors in series.
+
+\section*{Dissection of Experimental Plan: Part Two}
+
+After gaining our Part One results, we determined the concealed circuit was
+a voltage divider. We had $V_{ab}$ as the input voltage, $V_{cb}$ as the
+voltage drop across resistor Y, and $V_{ac}$ as the voltage drop across
+resistor X, equal to $V_{ab} - V_{cb}$.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{figures/fig04_voltage_divider_diagram.png}
+    \caption{Concealed circuit modeled as a voltage divider, with Element X
+    and Element Y both resistive}
+\end{figure}
+
+We required two equations to determine the values for both resistors: an
+equation for the voltage drop across resistors in series, and an equation
+for the equivalent resistance between two series resistors.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.32\textwidth]{figures/fig_eq01_vout_formula.png}
+    \vspace{4pt}
+
+    \includegraphics[width=0.28\textwidth]{figures/fig_eq02_rxry_formula.png}
+    \caption{Voltage-divider equation and series-resistance equation}
+\end{figure}
+
+\section*{Experimental Results: Part Two}
+
+The second test performed on the concealed circuit was a current and
+voltage measurement.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\textwidth]{figures/fig05_scope_current.png}
+    \caption{Measured AC current, $I = 0.2204$\,mA}
+\end{figure}
+
+We measure an AC current $I$ of $0.22$\,mA.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{figures/fig06_scope_waveform_p2.png}
+    \caption{Oscilloscope voltage and current measurement across the
+    concealed circuit}
+\end{figure}
+
+With $V_{ab} = 5$\,V and $V_{cb} = 2$\,V, we substitute the values into the
+equation for equivalent resistance between two series resistors:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{figures/fig_eq03_rxry_calc.png}
+
+    \vspace{6pt}
+    \includegraphics[width=0.22\textwidth]{figures/fig_eq04_ry_ratio.png}
+
+    \vspace{6pt}
+    \includegraphics[width=0.55\textwidth]{figures/fig_eq05_final_values.png}
+    \caption{Solving for $R_x$ and $R_y$ from the measured current and
+    voltages}
+\end{figure}
+
+We concluded that Element X was a 9\,k$\Omega$ resistor and that Element Y
+was a 14\,k$\Omega$ resistor.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\textwidth]{figures/fig07_handcalc.png}
+    \caption{Hand calculations backing the previous results}
+\end{figure}
+
+\section*{Conclusion}
+
+We observed that both the input and output signals had no phase difference,
+by comparing the square wave behavior of $V_{ab}$ and $V_{cb}$. This alerted
+us to the conclusion that the concealed circuit was an R--R combination.
+Once we realized it was two resistors in series, we measured the input and
+output voltages, took note of the current flowing through the concealed
+circuit, and used the voltage divider and series resistance equations to
+determine the value of each resistor. Overall, the results aligned with our
+expectations, confirming the approach for identifying and solving the
+concealed circuit worked.
+
+\end{document}
